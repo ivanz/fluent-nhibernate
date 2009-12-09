@@ -12,14 +12,14 @@ namespace FluentNHibernate.Testing.Testing.Values
 {
     public abstract class With_list_entity : Specification
     {
-        private PropertyInfo property;
+        private Accessor property;
         protected ListEntity target;
         protected List<ListEntity, string> sut;
         protected string[] listItems;
 
         public override void establish_context()
         {
-            property = ReflectionHelper.GetProperty(GetPropertyExpression());
+            property = ReflectionHelper.GetAccessor (GetPropertyExpression ());
             target = new ListEntity();
 
             listItems = new[] {"foo", "bar", "baz"};
@@ -259,13 +259,13 @@ namespace FluentNHibernate.Testing.Testing.Values
 
     public abstract class With_initialized_list : Specification
     {
-        protected PropertyInfo property;
+        protected Accessor property;
         protected ListEntity target;
         protected List<ListEntity, string> sut;
 
         public override void establish_context()
         {
-            property = ReflectionHelper.GetProperty((Expression<Func<ListEntity, IEnumerable<string>>>)(x => x.GetterAndSetter));
+            property = ReflectionHelper.GetAccessor((Expression<Func<ListEntity, IEnumerable<string>>>)(x => x.GetterAndSetter));
             target = new ListEntity();
 
             sut = new List<ListEntity, string>(property, new[] {"foo", "bar", "baz"});
@@ -486,7 +486,7 @@ namespace FluentNHibernate.Testing.Testing.Values
     {
         public override void establish_context()
         {
-            property = ReflectionHelper.GetProperty((Expression<Func<ListEntity, IEnumerable<string>>>)(x => x.TypedSet));
+            property = ReflectionHelper.GetAccessor((Expression<Func<ListEntity, IEnumerable<string>>>)(x => x.TypedSet));
             target = new ListEntity();
 
             sut = new List<ListEntity, string>(property, new[] {"foo", "bar", "baz"});
@@ -510,7 +510,7 @@ namespace FluentNHibernate.Testing.Testing.Values
     {
         public override void establish_context()
         {
-            property = ReflectionHelper.GetProperty((Expression<Func<ListEntity, IEnumerable>>)(x => x.Set));
+            property = ReflectionHelper.GetAccessor((Expression<Func<ListEntity, IEnumerable>>)(x => x.Set));
             target = new ListEntity();
 
             sut = new List<ListEntity, string>(property, new[] {"foo", "bar", "baz"});
@@ -534,7 +534,7 @@ namespace FluentNHibernate.Testing.Testing.Values
     {
         public override void establish_context()
         {
-            property = ReflectionHelper.GetProperty((Expression<Func<ListEntity, IEnumerable>>)(x => x.Collection));
+            property = ReflectionHelper.GetAccessor((Expression<Func<ListEntity, IEnumerable>>)(x => x.Collection));
             target = new ListEntity();
 
             sut = new List<ListEntity, string>(property, new[] {"foo", "bar", "baz"});
@@ -558,7 +558,7 @@ namespace FluentNHibernate.Testing.Testing.Values
     {
         public override void establish_context()
         {
-            property = ReflectionHelper.GetProperty((Expression<Func<ListEntity, IEnumerable>>)(x => x.List));
+            property = ReflectionHelper.GetAccessor((Expression<Func<ListEntity, IEnumerable>>)(x => x.List));
             target = new ListEntity();
 
             sut = new List<ListEntity, string>(property, new[] {"foo", "bar", "baz"});
@@ -582,7 +582,7 @@ namespace FluentNHibernate.Testing.Testing.Values
     {
         public override void establish_context()
         {
-            property = ReflectionHelper.GetProperty((Expression<Func<ListEntity, IEnumerable<string>>>)(x => x.Array));
+            property = ReflectionHelper.GetAccessor((Expression<Func<ListEntity, IEnumerable<string>>>)(x => x.Array));
             target = new ListEntity();
 
             sut = new List<ListEntity, string>(property, new[] {"foo", "bar", "baz"});
