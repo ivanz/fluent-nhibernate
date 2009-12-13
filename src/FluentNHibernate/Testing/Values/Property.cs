@@ -82,9 +82,12 @@ namespace FluentNHibernate.Testing.Values
             {
                 string message =
                     String.Format(
-                        "Expected '{0}' but got '{1}' for Property '{2}'",
-                        Value,
-                        actual, PropertyInfo.Name);
+                        "For property '{0}' expected '{1}' of type '{2}' but got '{3}' of type '{4}'",
+                        PropertyInfo.Name,
+                        (Value != null ? Value.ToString() : "(null)"),
+                        (Value != null ? Value.GetType().FullName : "(null)"),
+                        actual,
+                        PropertyInfo.PropertyType.FullName);
 
                 throw new ApplicationException(message);
             }
